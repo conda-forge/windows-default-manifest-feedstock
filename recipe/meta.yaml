@@ -9,7 +9,7 @@ source:
   git_rev: release-{{ version.replace(".", "_") }}
 
 build:
-  number: 6
+  number: 7
 
 outputs:
   - name: mingw-w64-ucrt-x86_64-windows-default-manifest
@@ -24,11 +24,12 @@ outputs:
         - __unix   # [unix]
         - __win    # [win]
       run_constrained:
-        - m2w64-sysroot_win-64 >=12
+        - m2w64-sysroot_win-64 >=12.0.0.r0
 
     test:
       commands:
-        - echo "hello"
+        # Need target_platform here for it to be stored
+        - echo "hello on {{ target_platform }}"
 
 about:
   home: https://cygwin.com/
